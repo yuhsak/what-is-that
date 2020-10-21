@@ -1,0 +1,21 @@
+{
+  "exclude": [
+    "tests",
+    "node_modules",
+  ],
+  "compilerOptions": {
+    "incremental": true,
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["dom"],
+    "declaration": true,
+    "declarationMap": true,
+    "tsBuildInfoFile": "tsconfig.tsbuildinfo",
+    "isolatedModules": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

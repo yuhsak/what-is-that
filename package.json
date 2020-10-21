@@ -1,0 +1,43 @@
+{
+  "name": "what-is-that",
+  "version": "1.1.0",
+  "description": "",
+  "author": {
+    "name": "Yuhsak Inoue",
+    "email": "yuhsak.inoue@gmail.com",
+    "url": "https://github.com/Yuhsak"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yuhsak/what-is-that.git"
+  },
+  "main": "index.js",
+  "module": "index.esm.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.esm.js",
+    "index.d.ts",
+    "index.d.ts.map",
+    "tsconfig.json",
+    "tsconfig.esm.json"
+  ],
+  "scripts": {
+    "test": "jest",
+    "move": "mv esm/index.js index.esm.js && rm -r esm",
+    "clean": "rm -rf esm index.js index.d.ts index.esm.js *.tsbuildinfo; echo ok",
+    "build": "tsc -b tsconfig.json tsconfig.esm.json",
+    "buildAndMove": "npm run build && npm run move",
+    "watch": "npm run build -- --watch",
+    "prebuild": "npm run clean",
+    "start": "npm run watch",
+    "prepublishOnly": "npm run buildAndMove"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.3",
+    "jest": "26.5.2",
+    "ts-jest": "^26.4.1",
+    "@types/jest": "^26.0.14"
+  }
+}
