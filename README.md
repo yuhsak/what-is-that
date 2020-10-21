@@ -1,5 +1,7 @@
 # what-is-that
 
+Identify type of Object (or Primitive) for both Node.js and browser written in TypeScript
+
 ## Install
 
 ```sh
