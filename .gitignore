@@ -4,7 +4,5 @@
 .vscode
 
 /esm
-index.d.ts
-index.d.ts.map
-index.esm.js
-index.js
+index.*
+!index.ts

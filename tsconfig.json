@@ -1,7 +1,6 @@
 {
-  "exclude": [
-    "tests",
-    "node_modules",
+  "include": [
+    "index.ts"
   ],
   "compilerOptions": {
     "incremental": true,
@@ -10,6 +9,7 @@
     "lib": ["dom"],
     "declaration": true,
     "declarationMap": true,
+    "sourceMap": true,
     "tsBuildInfoFile": "tsconfig.tsbuildinfo",
     "isolatedModules": true,
     "strict": true,

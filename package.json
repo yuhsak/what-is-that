@@ -1,12 +1,13 @@
 {
   "name": "what-is-that",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Identify type of Object (or Primitive) for both Node.js and browser written in TypeScript",
   "author": {
     "name": "Yuhsak Inoue",
     "email": "yuhsak.inoue@gmail.com",
     "url": "https://github.com/Yuhsak"
   },
+
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,23 +17,20 @@
   "module": "index.esm.js",
   "types": "index.d.ts",
   "files": [
-    "index.js",
-    "index.esm.js",
-    "index.d.ts",
-    "index.d.ts.map",
+    "index.*",
     "tsconfig.json",
     "tsconfig.esm.json"
   ],
   "scripts": {
     "test": "jest",
-    "move": "mv esm/index.js index.esm.js && rm -r esm",
-    "clean": "rm -rf esm index.js index.d.ts index.esm.js *.tsbuildinfo; echo ok",
-    "build": "tsc -b tsconfig.json tsconfig.esm.json",
-    "buildAndMove": "npm run build && npm run move",
-    "watch": "npm run build -- --watch",
+    "clean": "ls | grep -E '^index\\..*?(js|d\\.ts)|^esm|\\.tsbuildinfo$' | xargs rm -r",
+    "build:compile": "tsc -b tsconfig.json tsconfig.esm.json",
+    "rename:esm": "ls -d esm/* | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.esm\\2/' | xargs -IX echo mv X | sh && mv esm/* . && rm -r esm",
+    "build": "npm run build:compile && npm run rename:esm",
+    "watch": "npm run build:compile -- --watch",
     "prebuild": "npm run clean",
     "start": "npm run watch",
-    "prepublishOnly": "npm run buildAndMove"
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "typescript": "^4.0.3",
