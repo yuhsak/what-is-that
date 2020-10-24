@@ -1,3 +1,5 @@
+os: linux
+dist: focal
 language: node_js
 node_js:
   - 12
@@ -5,10 +7,10 @@ script: npm run test:ci
 deploy:
   provider: npm
   email: yuhsak.inoue@gmail.com
-  api_key:
+  api_token:
     secure: jINQpQzfj6r0+75v+wl7XchG1C48ynqG3w9WBjGg8JGJ0/D++o+6kXd2h82A+6xL6/ZJHwpa734KaogrG7aoabtKtQMIyJ2Nya4cPsBRvXeTJRHur/xISeFaIfPvyeIWAOCAWXpiUY8ETcf14U5dJDXcvAqu4bEhsCkwvXF2CWNN9TF3BBPsA/h/6tPIRE5oRb3/a/msrUn6hT2yJz0EtrIJRWvXAYFG+knsib8JxM4ER3lmwpWda5wVffBzPdVmWs+1+BQIPPOcCWl2XtkQoek1344KHltbnRYLeSzdN+HpLCuJ8FaPUlvjXwlpv7acU0KbTfsnjp+sHpJ/s28wH0rXmuexj1AmD/u87ePJUv6yNmd4V6WI0oBD8Zrma4ntwFCC5F9W618TDHaMNMKwXXZpFsuqRIZ0Xtpltsb9OlyLpt3ymhgFXzPEkydMsP9wMmmLhbUtbL4t4kV0zdsRyT24RYt7Q1/NyR5cEoAj2O4Ku7oK0JD4SB47sxaZebdV4fcXMMN7QqBLFb0xw4xQThlFXHIBO4udtWdurIJhOKiZJCcbcD0GwwJfGC9KxrQYr64OJQLJCefmMx6c/kIUYFjpR/3pDY4UeDvvWR/WDjvBPjHDfkB3Cm0CNLwMcdzMPxlOHjD30UjxgGqDCKCjjOFEONJYiFqpIdE/tsSDjwo=
   on:
     tags: true
     repo: Yuhsak/what-is-that
     branch: main
-  skip_cleanup: 'true'
+  cleanup: false
