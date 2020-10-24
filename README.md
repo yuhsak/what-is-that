@@ -11,7 +11,7 @@ npm install what-is-that
 ## Usage
 
 ```ts
-import {what, is} from 'what-is-that'
+import {what, isObject, isObjectLike} from 'what-is-that'
 
 // 'Boolean'
 what(true)
@@ -30,8 +30,8 @@ const obj = new MyObj()
 what(obj)
 
 // false
-is.Object(obj)
+isObject(obj)
 
 // true
-is.ObjectLike(obj)
+isObjectLike(obj)
 ```

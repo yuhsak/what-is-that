@@ -49,15 +49,15 @@ describe('Object', () => {
     expect(what(() => {})).toBe('Function')
   })
 
-  // function * gen() {yield true}
+  function * gen() {yield true}
 
-  // test('GeneratorFunction', () => {
-  //   expect(what(gen)).toBe('GeneratorFunction')
-  // })
+  test('GeneratorFunction', () => {
+    expect(what(gen)).toBe('GeneratorFunction')
+  })
 
-  // test('Generator', () => {
-  //   expect(what(gen())).toBe('Generator')
-  // })
+  test('Generator', () => {
+    expect(what(gen())).toBe('Generator')
+  })
 
   test('RegExp', () => {
     expect(what(new RegExp(''))).toBe('RegExp')

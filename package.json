@@ -1,6 +1,6 @@
 {
   "name": "what-is-that",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Identify type of Object (or Primitive) for both Node.js and browser written in TypeScript",
   "author": {
     "name": "Yuhsak Inoue",
@@ -25,7 +25,7 @@
     "test": "jest",
     "clean": "ls | grep -E '^index\\..*?(js|d\\.ts)|^esm|\\.tsbuildinfo$' | xargs rm -r",
     "build:compile": "tsc -b tsconfig.json tsconfig.esm.json",
-    "rename:esm": "ls -d esm/* | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.esm\\2/' | xargs -IX echo mv X | sh && mv esm/* . && rm -r esm",
+    "rename:esm": "ls -d esm/* | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.esm\\2/' | xargs -IX echo mv X | sh && mv esm/* . && sed -i -e 's/index\\.js\\.map/index\\.esm\\.js\\.map/' index.esm.js && rm -r esm *-e",
     "build": "npm run build:compile && npm run rename:esm",
     "watch": "npm run build:compile -- --watch",
     "prebuild": "npm run clean",
