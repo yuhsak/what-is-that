@@ -43,254 +43,251 @@ export type Type =
   'BigUint64Array' |
   'Unknown'
 
-export function getReprStr(obj: any) {
-  return Object.prototype.toString.call(obj).slice(8, -1)
+export function getReprStr(o: any) {
+  return Object.prototype.toString.call(o).slice(8, -1)
 }
 
-export function what(obj: any): Type {
+export function what(o: any): Type {
 
-  var t = getReprStr(obj)
+  var t = getReprStr(o)
 
-  if (t === 'Undefined') return 'Undefined'
-  if (t === 'Null') return 'Null'
-  if (t === 'Number') return 'Number'
-  if (t === 'Boolean') return 'Boolean'
-  if (t === 'String') return 'String'
-  if (t === 'Symbol') return 'Symbol'
-  if (t === 'BigInt') return 'BigInt'
-  if (t === 'Object' && obj.constructor === Object && Object.getPrototypeOf(obj) === Object.prototype) return 'Object'
-  if (t === 'Function') return 'Function'
-  if (t === 'GeneratorFunction') return 'GeneratorFunction'
-  if (t === 'Generator') return 'Generator'
-  if (t === 'RegExp') return 'RegExp'
-  if (t === 'Date') return 'Date'
-  if (t === 'Blob') return 'Blob'
-  if (t === 'File') return 'File'
-  if (t === 'Promise') return 'Promise'
-  if (t === 'Error') return 'Error'
-  if (t === 'TextEncoder') return 'TextEncoder'
-  if (t === 'TextDecoder') return 'TextDecoder'
-  if (t === 'URL') return 'URL'
-  if (t === 'URLSearchParams') return 'URLSearchParams'
-  if (t === 'Array') return 'Array'
-  if (t === 'Set') return 'Set'
-  if (t === 'Map') return 'Map'
-  if (t === 'WeakSet') return 'WeakSet'
-  if (t === 'WeakMap') return 'WeakMap'
-  if (t === 'DataView') return 'DataView'
-  // Must handle Buffer before Uint8Array because Buffer has 'Uint8Array]' for its string representation
-  if (obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)) return 'Buffer'
-  if (t === 'ArrayBuffer') return 'ArrayBuffer'
-  if (t === 'SharedArrayBuffer') return 'SharedArrayBuffer'
-  if (t === 'Int8Array') return 'Int8Array'
-  if (t === 'Uint8Array') return 'Uint8Array'
-  if (t === 'Uint8ClampedArray') return 'Uint8ClampedArray'
-  if (t === 'Int16Array') return 'Int16Array'
-  if (t === 'Uint16Array') return 'Uint16Array'
-  if (t === 'Int32Array') return 'Int32Array'
-  if (t === 'Uint32Array') return 'Uint32Array'
-  if (t === 'Float32Array') return 'Float32Array'
-  if (t === 'Float64Array') return 'Float64Array'
-  if (t === 'BigInt64Array') return 'BigInt64Array'
-  if (t === 'BigUint64Array') return 'BigUint64Array'
-  if (t === 'Object') return 'ObjectLike'
-
-  return 'Unknown'
+  // @ts-ignore
+  return t === 'Undefined' ? t :
+    t === 'Null' ? t :
+    t === 'Number' ? t :
+    t === 'Boolean' ? t :
+    t === 'String' ? t :
+    t === 'Symbol' ? t :
+    t === 'BigInt' ? t :
+    t === 'Object' ? o.constructor === Object && Object.getPrototypeOf(o) === Object.prototype ? t : 'ObjectLike' :
+    t === 'Function' ? t :
+    t === 'GeneratorFunction' ? t :
+    t === 'Generator' ? t :
+    t === 'RegExp' ? t :
+    t === 'Date' ? t :
+    t === 'Blob' ? t :
+    t === 'File' ? t :
+    t === 'Promise' ? t :
+    t === 'Error' ? t :
+    t === 'TextEncoder' ? t :
+    t === 'TextDecoder' ? t :
+    t === 'URL' ? t :
+    t === 'URLSearchParams' ? t :
+    t === 'Array' ? t :
+    t === 'Set' ? t :
+    t === 'Map' ? t :
+    t === 'WeakSet' ? t :
+    t === 'WeakMap' ? t :
+    t === 'DataView' ? t :
+    t === 'ArrayBuffer' ? t :
+    t === 'SharedArrayBuffer' ? t :
+    t === 'Int8Array' ? t :
+    t === 'Uint8Array' ? o.constructor && typeof o.constructor.isBuffer === 'function' && o.constructor.isBuffer(o) ? 'Buffer' : t :
+    t === 'Uint8ClampedArray' ? t :
+    t === 'Int16Array' ? t :
+    t === 'Uint16Array' ? t :
+    t === 'Int32Array' ? t :
+    t === 'Uint32Array' ? t :
+    t === 'Float32Array' ? t :
+    t === 'Float64Array' ? t :
+    t === 'BigInt64Array' ? t :
+    t === 'BigUint64Array' ? t :
+    'Unknown'
 
 }
 
-export function isUndefined(obj: any): obj is undefined {
-  return what(obj) === 'Undefined'
+export function isUndefined(o: any): o is undefined {
+  return what(o) === 'Undefined'
 }
 
-export function isNull(obj: any): obj is null {
-  return what(obj) === 'Null'
+export function isNull(o: any): o is null {
+  return what(o) === 'Null'
 }
 
-export function isNumber(obj: any): obj is number {
-  return what(obj) === 'Number'
+export function isNumber(o: any): o is number {
+  return what(o) === 'Number'
 }
 
-export function isBoolean(obj: any): obj is boolean {
-  return what(obj) === 'Boolean'
+export function isBoolean(o: any): o is boolean {
+  return what(o) === 'Boolean'
 }
 
-export function isString(obj: any): obj is string {
-  return what(obj) === 'String'
+export function isString(o: any): o is string {
+  return what(o) === 'String'
 }
 
-export function isSymbol(obj: any): obj is symbol {
-  return what(obj) === 'Symbol'
+export function isSymbol(o: any): o is symbol {
+  return what(o) === 'Symbol'
 }
 
-export function isBigInt(obj: any): obj is BigInt {
-  return what(obj) === 'BigInt'
+export function isBigInt(o: any): o is BigInt {
+  return what(o) === 'BigInt'
 }
 
-export function isObject(obj: any): obj is Record<string, any> {
-  return what(obj) === 'Object'
+export function isObject(o: any): o is Record<string, any> {
+  return what(o) === 'Object'
 }
 
-export function isObjectAs<T extends Record<string, any>>(obj: any): obj is T {
-  return what(obj) === 'Object'
+export function isObjectAs<T extends Record<string, any>>(o: any): o is T {
+  return what(o) === 'Object'
 }
 
-export function isObjectLike(obj: any): obj is Record<string | number | symbol, any> {
-  return what(obj) === 'ObjectLike'
+export function isObjectLike(o: any): o is Record<string | number | symbol, any> {
+  return what(o) === 'ObjectLike'
 }
 
-export function isObjectLikeAs<T extends Record<string | number | symbol, any>>(obj: any): obj is T {
-  return what(obj) === 'ObjectLike'
+export function isObjectLikeAs<T extends Record<string | number | symbol, any>>(o: any): o is T {
+  return what(o) === 'ObjectLike'
 }
 
-export function isFunction(obj: any): obj is Function {
-  return what(obj) === 'Function'
+export function isFunction(o: any): o is Function {
+  return what(o) === 'Function'
 }
 
-export function isFunctionAs<T extends (...args: any[]) => any>(obj: any): obj is T {
-  return what(obj) === 'Function'
+export function isFunctionAs<T extends (...args: any[]) => any>(o: any): o is T {
+  return what(o) === 'Function'
 }
 
-export function isRegExp(obj: any): obj is RegExp {
-  return what(obj) === 'RegExp'
+export function isRegExp(o: any): o is RegExp {
+  return what(o) === 'RegExp'
 }
 
-export function isDate(obj: any): obj is Date {
-  return what(obj) === 'Date'
+export function isDate(o: any): o is Date {
+  return what(o) === 'Date'
 }
 
-export function isBlob(obj: any): obj is Blob {
-  return what(obj) === 'Blob'
+export function isBlob(o: any): o is Blob {
+  return what(o) === 'Blob'
 }
 
-export function isFile(obj: any): obj is File {
-  return what(obj) === 'File'
+export function isFile(o: any): o is File {
+  return what(o) === 'File'
 }
 
-export function isPromise(obj: any): obj is Promise<any> {
-  return what(obj) === 'Promise'
+export function isPromise(o: any): o is Promise<any> {
+  return what(o) === 'Promise'
 }
 
-export function isPromiseAs<T extends Promise<any>>(obj: any): obj is T {
-  return what(obj) === 'Promise'
+export function isPromiseAs<T extends Promise<any>>(o: any): o is T {
+  return what(o) === 'Promise'
 }
 
-export function isError(obj: any): obj is Error {
-  return what(obj) === 'Error'
+export function isError(o: any): o is Error {
+  return what(o) === 'Error'
 }
 
-export function isTextEncoder(obj: any): obj is TextEncoder {
-  return what(obj) === 'TextEncoder'
+export function isTextEncoder(o: any): o is TextEncoder {
+  return what(o) === 'TextEncoder'
 }
 
-export function isTextDecoder(obj: any): obj is TextDecoder {
-  return what(obj) === 'TextDecoder'
+export function isTextDecoder(o: any): o is TextDecoder {
+  return what(o) === 'TextDecoder'
 }
 
-export function isURL(obj: any): obj is URL {
-  return what(obj) === 'URL'
+export function isURL(o: any): o is URL {
+  return what(o) === 'URL'
 }
 
-export function isURLSearchParams(obj: any): obj is URLSearchParams {
-  return what(obj) === 'URLSearchParams'
+export function isURLSearchParams(o: any): o is URLSearchParams {
+  return what(o) === 'URLSearchParams'
 }
 
-export function isArray(obj: any): obj is Array<any> {
-  return what(obj) === 'Array'
+export function isArray(o: any): o is Array<any> {
+  return what(o) === 'Array'
 }
 
-export function isArrayAs<T extends Array<any>>(obj: any): obj is T {
-  return what(obj) === 'Array'
+export function isArrayAs<T extends Array<any>>(o: any): o is T {
+  return what(o) === 'Array'
 }
 
-export function isSet(obj: any): obj is Set<any> {
-  return what(obj) === 'Set'
+export function isSet(o: any): o is Set<any> {
+  return what(o) === 'Set'
 }
 
-export function isSetAs<T extends Set<any>>(obj: any): obj is T {
-  return what(obj) === 'Set'
+export function isSetAs<T extends Set<any>>(o: any): o is T {
+  return what(o) === 'Set'
 }
 
-export function isMap(obj: any): obj is Map<any, any> {
-  return what(obj) === 'Map'
+export function isMap(o: any): o is Map<any, any> {
+  return what(o) === 'Map'
 }
 
-export function isMapAs<T extends Map<any, any>>(obj: any): obj is T {
-  return what(obj) === 'Map'
+export function isMapAs<T extends Map<any, any>>(o: any): o is T {
+  return what(o) === 'Map'
 }
 
-export function isWeakSet(obj: any): obj is WeakSet<any> {
-  return what(obj) === 'WeakSet'
+export function isWeakSet(o: any): o is WeakSet<any> {
+  return what(o) === 'WeakSet'
 }
 
-export function isWeakSetAs<T extends WeakSet<any>>(obj: any): obj is T {
-  return what(obj) === 'WeakSet'
+export function isWeakSetAs<T extends WeakSet<any>>(o: any): o is T {
+  return what(o) === 'WeakSet'
 }
 
-export function isWeakMap(obj: any): obj is WeakMap<any, any> {
-  return what(obj) === 'WeakMap'
+export function isWeakMap(o: any): o is WeakMap<any, any> {
+  return what(o) === 'WeakMap'
 }
 
-export function isWeakMapAs<T extends WeakMap<any, any>>(obj: any): obj is T {
-  return what(obj) === 'WeakMap'
+export function isWeakMapAs<T extends WeakMap<any, any>>(o: any): o is T {
+  return what(o) === 'WeakMap'
 }
 
-export function isDataView(obj: any): obj is DataView {
-  return what(obj) === 'DataView'
+export function isDataView(o: any): o is DataView {
+  return what(o) === 'DataView'
 }
 
-export function isBuffer(obj: any): obj is Buffer {
-  return what(obj) === 'Buffer'
+export function isBuffer(o: any): o is Buffer {
+  return what(o) === 'Buffer'
 }
 
-export function isArrayBuffer(obj: any): obj is ArrayBuffer {
-  return what(obj) === 'ArrayBuffer'
+export function isArrayBuffer(o: any): o is ArrayBuffer {
+  return what(o) === 'ArrayBuffer'
 }
 
-export function isSharedArrayBuffer(obj: any): obj is SharedArrayBuffer {
-  return what(obj) === 'SharedArrayBuffer'
+export function isSharedArrayBuffer(o: any): o is SharedArrayBuffer {
+  return what(o) === 'SharedArrayBuffer'
 }
 
-export function isInt8Array(obj: any): obj is Int8Array {
-  return what(obj) === 'Int8Array'
+export function isInt8Array(o: any): o is Int8Array {
+  return what(o) === 'Int8Array'
 }
 
-export function isUint8Array(obj: any): obj is Uint8Array {
-  return what(obj) === 'Uint8Array'
+export function isUint8Array(o: any): o is Uint8Array {
+  return what(o) === 'Uint8Array'
 }
 
-export function isUint8ClampedArray(obj: any): obj is Uint8ClampedArray {
-  return what(obj) === 'Uint8ClampedArray'
+export function isUint8ClampedArray(o: any): o is Uint8ClampedArray {
+  return what(o) === 'Uint8ClampedArray'
 }
 
-export function isInt16Array(obj: any): obj is Int16Array {
-  return what(obj) === 'Int16Array'
+export function isInt16Array(o: any): o is Int16Array {
+  return what(o) === 'Int16Array'
 }
 
-export function isUint16Array(obj: any): obj is Uint16Array {
-  return what(obj) === 'Uint16Array'
+export function isUint16Array(o: any): o is Uint16Array {
+  return what(o) === 'Uint16Array'
 }
 
-export function isInt32Array(obj: any): obj is Int32Array {
-  return what(obj) === 'Int32Array'
+export function isInt32Array(o: any): o is Int32Array {
+  return what(o) === 'Int32Array'
 }
 
-export function isUint32Array(obj: any): obj is Uint32Array {
-  return what(obj) === 'Uint32Array'
+export function isUint32Array(o: any): o is Uint32Array {
+  return what(o) === 'Uint32Array'
 }
 
-export function isFloat32Array(obj: any): obj is Float32Array {
-  return what(obj) === 'Float32Array'
+export function isFloat32Array(o: any): o is Float32Array {
+  return what(o) === 'Float32Array'
 }
 
-export function isFloat64Array(obj: any): obj is Float64Array {
-  return what(obj) === 'Float64Array'
+export function isFloat64Array(o: any): o is Float64Array {
+  return what(o) === 'Float64Array'
 }
 
-export function isBigInt64Array(obj: any): obj is BigInt64Array {
-  return what(obj) === 'BigInt64Array'
+export function isBigInt64Array(o: any): o is BigInt64Array {
+  return what(o) === 'BigInt64Array'
 }
 
-export function isBigUint64Array(obj: any): obj is BigUint64Array {
-  return what(obj) === 'BigUint64Array'
+export function isBigUint64Array(o: any): o is BigUint64Array {
+  return what(o) === 'BigUint64Array'
 }

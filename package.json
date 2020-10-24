@@ -1,6 +1,6 @@
 {
   "name": "what-is-that",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Identify type of Object (or Primitive) for both Node.js and browser written in TypeScript",
   "author": {
     "name": "Yuhsak Inoue",
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/Yuhsak/what-is-that.git"
   },
-  "main": "index.js",
+  "main": "index.common.js",
   "module": "index.esm.js",
   "types": "index.d.ts",
   "files": [
@@ -23,10 +23,11 @@
   ],
   "scripts": {
     "test": "jest",
-    "clean": "ls | grep -E '^index\\..*?(js|d\\.ts)|^esm|\\.tsbuildinfo$' | xargs rm -r",
+    "clean": "ls | grep -E '^index\\..*?(js|d\\.ts)|^esm|^common|\\.tsbuildinfo$' | xargs rm -r",
     "build:compile": "tsc -b tsconfig.json tsconfig.esm.json",
-    "rename:esm": "ls -d esm/* | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.esm\\2/' | xargs -IX echo mv X | sh && mv esm/* . && sed -i -e 's/index\\.js\\.map/index\\.esm\\.js\\.map/' index.esm.js && rm -r esm *-e",
-    "build": "npm run build:compile && npm run rename:esm",
+    "rename:esm": "ls -d esm/* | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.esm\\2/' | xargs -IX echo mv X | sh && mv esm/* . && sed -i -e 's/index\\.js\\.map/index\\.esm\\.js\\.map/' index.esm.js && sed -i -e 's/index\\.js/index\\.esm\\.js/' index.esm.js.map && sed -i -e 's/\\.\\.\\/index\\.ts/\\.\\/index\\.ts/' index.esm.js.map && rm -r esm *-e",
+    "rename:common": "ls -d common/* | grep -v d.ts | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.common\\2/' | xargs -IX echo mv X | sh && mv common/* . && sed -i -e 's/index\\.js\\.map/index\\.common\\.js\\.map/' index.common.js && sed -i -e 's/index\\.js/index\\.common\\.js/' index.common.js.map && sed -i -e 's/\\.\\.\\/index\\.ts/\\.\\/index\\.ts/' index.common.js.map && rm -r common *-e",
+    "build": "npm run build:compile && npm run rename:esm && npm run rename:common",
     "watch": "npm run build:compile -- --watch",
     "prebuild": "npm run clean",
     "start": "npm run watch",
