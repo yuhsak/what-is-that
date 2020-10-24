@@ -1,4 +1,4 @@
-# what-is-that
+# what-is-that [![Build Status](https://travis-ci.org/Yuhsak/what-is-that.svg?branch=main)](https://travis-ci.org/Yuhsak/what-is-that) [![Coverage Status](https://coveralls.io/repos/github/Yuhsak/what-is-that/badge.svg?branch=main)](https://coveralls.io/github/Yuhsak/what-is-that?branch=main)
 
 Minimal, tiny (1.1 kb) object type identifier for both Node.js and browser written in TypeScript.
 
