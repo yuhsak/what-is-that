@@ -3,8 +3,15 @@ module.exports = {
     "<rootDir>/tests"
   ],
   "testMatch": [
-    "**/tests/**/*.+(ts|tsx|js)",
-    "**/?(*.)+(spec|test).+(ts|tsx|js)"
+    "**/tests/**/*.+(ts|tsx|js|jsx)",
+    "**/?(*.)+(spec|test).+(ts|tsx|js|jsx)"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "__.*?\.(ts|tsx|js|jsx)$"
+  ],
+  "collectCoverageFrom": [
+    "index.ts"
   ],
   "transform": {
     "^.+\\.(ts|tsx)$": "ts-jest"

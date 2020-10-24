@@ -13,8 +13,6 @@ export type Type =
   'Generator' |
   'RegExp' |
   'Date' |
-  'Blob' |
-  'File' |
   'Promise' |
   'Error' |
   'TextEncoder' |
@@ -41,6 +39,8 @@ export type Type =
   'Float64Array' |
   'BigInt64Array' |
   'BigUint64Array' |
+  'Blob' |
+  'File' |
   'Unknown'
 
 export function getReprStr(o: any) {
@@ -65,8 +65,6 @@ export function what(o: any): Type {
     t === 'Generator' ? t :
     t === 'RegExp' ? t :
     t === 'Date' ? t :
-    t === 'Blob' ? t :
-    t === 'File' ? t :
     t === 'Promise' ? t :
     t === 'Error' ? t :
     t === 'TextEncoder' ? t :
@@ -92,6 +90,8 @@ export function what(o: any): Type {
     t === 'Float64Array' ? t :
     t === 'BigInt64Array' ? t :
     t === 'BigUint64Array' ? t :
+    t === 'Blob' ? t :
+    t === 'File' ? t :
     'Unknown'
 
 }
@@ -148,20 +148,24 @@ export function isFunctionAs<T extends (...args: any[]) => any>(o: any): o is T 
   return what(o) === 'Function'
 }
 
+export function isGeneratorFunction(o: any): o is GeneratorFunction {
+  return what(o) === 'GeneratorFunction'
+}
+
+export function isGenerator(o: any): o is Generator {
+  return what(o) === 'Generator'
+}
+
+export function isGeneratorAs<T extends Generator>(o: any): o is T {
+  return what(o) === 'Generator'
+}
+
 export function isRegExp(o: any): o is RegExp {
   return what(o) === 'RegExp'
 }
 
 export function isDate(o: any): o is Date {
   return what(o) === 'Date'
-}
-
-export function isBlob(o: any): o is Blob {
-  return what(o) === 'Blob'
-}
-
-export function isFile(o: any): o is File {
-  return what(o) === 'File'
 }
 
 export function isPromise(o: any): o is Promise<any> {
@@ -290,4 +294,20 @@ export function isBigInt64Array(o: any): o is BigInt64Array {
 
 export function isBigUint64Array(o: any): o is BigUint64Array {
   return what(o) === 'BigUint64Array'
+}
+
+export function isBlob(o: any): o is Blob {
+  return what(o) === 'Blob'
+}
+
+export function isFile(o: any): o is File {
+  return what(o) === 'File'
+}
+
+export function isUnknown(o: any): o is any {
+  return what(o) === 'Unknown'
+}
+
+export function isUnknownAs<T>(o: any): o is T {
+  return what(o) === 'Unknown'
 }

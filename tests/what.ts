@@ -1,166 +1,183 @@
-import {what} from '../'
+import {what, getReprStr} from '../index'
+import * as o from './__object'
 
-describe('Primitive', () => {
+describe('what', () => {
 
-  test('Undefined', () => {
-    expect(what(undefined)).toBe('Undefined')
+  describe('getReprStr', () => {
+    expect(getReprStr(true)).toBe('Boolean')
   })
 
-  test('Null', () => {
-    expect(what(null)).toBe('Null')
+  describe('Primitive', () => {
+
+    test('Undefined', () => {
+      expect(what(undefined)).toBe('Undefined')
+    })
+
+    test('Null', () => {
+      expect(what(null)).toBe('Null')
+    })
+
+    test('Number', () => {
+      expect(what(1)).toBe('Number')
+    })
+
+    test('Boolean', () => {
+      expect(what(true)).toBe('Boolean')
+    })
+
+    test('String', () => {
+      expect(what('isthat')).toBe('String')
+    })
+
+    test('Symbol', () => {
+      expect(what(Symbol('isthat'))).toBe('Symbol')
+    })
+
+    test('BigInt', () => {
+      expect(what(BigInt('1'))).toBe('BigInt')
+    })
+
   })
 
-  test('Number', () => {
-    expect(what(1)).toBe('Number')
-  })
+  describe('Object', () => {
 
-  test('Boolean', () => {
-    expect(what(true)).toBe('Boolean')
-  })
+    test('Object', () => {
+      expect(what(o.object)).toBe('Object')
+    })
 
-  test('String', () => {
-    expect(what('isthat')).toBe('String')
-  })
+    test('ObjectLike', () => {
+      expect(what(o.objectLike)).toBe('ObjectLike')
+    })
 
-  test('Symbol', () => {
-    expect(what(Symbol('isthat'))).toBe('Symbol')
-  })
+    test('Function', () => {
+      expect(what(o.ObjectLike)).toBe('Function')
+      expect(what(() => {})).toBe('Function')
+    })
 
-  test('BigInt', () => {
-    expect(what(BigInt('1'))).toBe('BigInt')
-  })
+    test('GeneratorFunction', () => {
+      expect(what(o.generatorFunction)).toBe('GeneratorFunction')
+    })
 
-})
+    test('Generator', () => {
+      expect(what(o.generator)).toBe('Generator')
+    })
 
-describe('Object', () => {
+    test('RegExp', () => {
+      expect(what(new RegExp(''))).toBe('RegExp')
+    })
 
-  test('Object', () => {
-    expect(what({a: true})).toBe('Object')
-  })
+    test('Date', () => {
+      expect(what(new Date())).toBe('Date')
+    })
 
-  class MyObj {}
+    test('Promise', () => {
+      expect(what(Promise.resolve())).toBe('Promise')
+    })
 
-  test('ObjectLike', () => {
-    expect(what(new MyObj())).toBe('ObjectLike')
-  })
+    test('Error', () => {
+      expect(what(new Error())).toBe('Error')
+    })
 
-  test('Function', () => {
-    expect(what(MyObj)).toBe('Function')
-    expect(what(() => {})).toBe('Function')
-  })
+    test('URL', () => {
+      expect(what(o.url)).toBe('URL')
+    })
 
-  function * gen() {yield true}
+    test('URLSearchParams', () => {
+      expect(what(o.urlSearchParams)).toBe('URLSearchParams')
+    })
 
-  test('GeneratorFunction', () => {
-    expect(what(gen)).toBe('GeneratorFunction')
-  })
+    test('Array', () => {
+      expect(what([])).toBe('Array')
+    })
 
-  test('Generator', () => {
-    expect(what(gen())).toBe('Generator')
-  })
+    test('Set', () => {
+      expect(what(new Set())).toBe('Set')
+    })
 
-  test('RegExp', () => {
-    expect(what(new RegExp(''))).toBe('RegExp')
-  })
+    test('Map', () => {
+      expect(what(new Map())).toBe('Map')
+    })
 
-  test('Date', () => {
-    expect(what(new Date())).toBe('Date')
-  })
+    test('WeakSet', () => {
+      expect(what(new WeakSet())).toBe('WeakSet')
+    })
 
-  test('Promise', () => {
-    expect(what(Promise.resolve())).toBe('Promise')
-  })
+    test('WeakMap', () => {
+      expect(what(new WeakMap())).toBe('WeakMap')
+    })
 
-  test('Error', () => {
-    expect(what(new Error())).toBe('Error')
-  })
+    test('DataView', () => {
+      expect(what(new DataView(new ArrayBuffer(1)))).toBe('DataView')
+    })
 
-  test('URL', () => {
-    expect(what(new URL('http://test'))).toBe('URL')
-  })
+    test('Buffer', () => {
+      expect(what(Buffer.from('isthat'))).toBe('Buffer')
+    })
 
-  test('URLSearchParams', () => {
-    expect(what(new URLSearchParams())).toBe('URLSearchParams')
-  })
+    test('ArrayBuffer', () => {
+      expect(what(new ArrayBuffer(1))).toBe('ArrayBuffer')
+    })
 
-  test('Array', () => {
-    expect(what([])).toBe('Array')
-  })
+    test('SharedArrayBuffer', () => {
+      expect(what(new SharedArrayBuffer(1))).toBe('SharedArrayBuffer')
+    })
 
-  test('Set', () => {
-    expect(what(new Set())).toBe('Set')
-  })
+    test('Int8Array', () => {
+      expect(what(new Int8Array())).toBe('Int8Array')
+    })
 
-  test('Map', () => {
-    expect(what(new Map())).toBe('Map')
-  })
+    test('Uint8Array', () => {
+      expect(what(new Uint8Array())).toBe('Uint8Array')
+    })
 
-  test('WeakSet', () => {
-    expect(what(new WeakSet())).toBe('WeakSet')
-  })
+    test('Uint8ClampedArray', () => {
+      expect(what(new Uint8ClampedArray())).toBe('Uint8ClampedArray')
+    })
 
-  test('WeakMap', () => {
-    expect(what(new WeakMap())).toBe('WeakMap')
-  })
+    test('Int16Array', () => {
+      expect(what(new Int16Array())).toBe('Int16Array')
+    })
 
-  test('DataView', () => {
-    expect(what(new DataView(new ArrayBuffer(1)))).toBe('DataView')
-  })
+    test('Uint16Array', () => {
+      expect(what(new Uint16Array())).toBe('Uint16Array')
+    })
 
-  test('Buffer', () => {
-    expect(what(Buffer.from('isthat'))).toBe('Buffer')
-  })
+    test('Int32Array', () => {
+      expect(what(new Int32Array())).toBe('Int32Array')
+    })
 
-  test('ArrayBuffer', () => {
-    expect(what(new ArrayBuffer(1))).toBe('ArrayBuffer')
-  })
+    test('Uint32Array', () => {
+      expect(what(new Uint32Array())).toBe('Uint32Array')
+    })
 
-  test('SharedArrayBuffer', () => {
-    expect(what(new SharedArrayBuffer(1))).toBe('SharedArrayBuffer')
-  })
+    test('Float32Array', () => {
+      expect(what(new Float32Array())).toBe('Float32Array')
+    })
 
-  test('Int8Array', () => {
-    expect(what(new Int8Array())).toBe('Int8Array')
-  })
+    test('Float64Array', () => {
+      expect(what(new Float64Array())).toBe('Float64Array')
+    })
 
-  test('Uint8Array', () => {
-    expect(what(new Uint8Array())).toBe('Uint8Array')
-  })
+    test('BigInt64Array', () => {
+      expect(what(new BigInt64Array())).toBe('BigInt64Array')
+    })
 
-  test('Uint8ClampedArray', () => {
-    expect(what(new Uint8ClampedArray())).toBe('Uint8ClampedArray')
-  })
+    test('BigUint64Array', () => {
+      expect(what(new BigUint64Array())).toBe('BigUint64Array')
+    })
 
-  test('Int16Array', () => {
-    expect(what(new Int16Array())).toBe('Int16Array')
-  })
+    test('Blob', () => {
+      expect(what(new Blob())).toBe('Blob')
+    })
 
-  test('Uint16Array', () => {
-    expect(what(new Uint16Array())).toBe('Uint16Array')
-  })
+    test('File', () => {
+      expect(what(o.file)).toBe('File')
+    })
 
-  test('Int32Array', () => {
-    expect(what(new Int32Array())).toBe('Int32Array')
-  })
+    test('Unknown', () => {
+      expect(what(o.unknown)).toBe('Unknown')
+    })
 
-  test('Uint32Array', () => {
-    expect(what(new Uint32Array())).toBe('Uint32Array')
-  })
-
-  test('Float32Array', () => {
-    expect(what(new Float32Array())).toBe('Float32Array')
-  })
-
-  test('Float64Array', () => {
-    expect(what(new Float64Array())).toBe('Float64Array')
-  })
-
-  test('BigInt64Array', () => {
-    expect(what(new BigInt64Array())).toBe('BigInt64Array')
-  })
-
-  test('BigUint64Array', () => {
-    expect(what(new BigUint64Array())).toBe('BigUint64Array')
   })
 
 })

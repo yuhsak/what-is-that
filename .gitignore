@@ -1,7 +1,8 @@
 .DS_Store
 /node_modules
-*.tsbuildinfo
+/coverage
 .vscode
+*.tsbuildinfo
 
 /esm
 /common

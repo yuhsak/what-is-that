@@ -1,6 +1,6 @@
 {
   "name": "what-is-that",
-  "version": "1.2.2",
+  "version": "1.2.4",
   "description": "Minimal, tiny (1.1 kb) object type identifier for both Node.js and browser written in TypeScript.",
   "author": {
     "name": "Yuhsak Inoue",
@@ -12,8 +12,8 @@
     "type": "git",
     "url": "https://github.com/Yuhsak/what-is-that.git"
   },
-  "main": "index.common.js",
-  "module": "index.esm.js",
+  "main": "index.min.js",
+  "module": "index.esm.min.js",
   "types": "index.d.ts",
   "files": [
     "index.*",
@@ -22,7 +22,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "clean": "ls | grep -E '^index\\..*?(js|d\\.ts)|^esm|^common|\\.tsbuildinfo$' | xargs rm -r",
+    "clean": "ls | grep -E '^index\\..*?(js|d\\.ts)|^esm|^common|^coverage|\\.tsbuildinfo$' | xargs rm -r",
     "build:compile": "tsc -b tsconfig.json tsconfig.esm.json",
     "build:rename:common": "ls -d common/* | grep -v d.ts | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.common\\.compiled\\2/' | xargs -IX echo mv X | sh && mv common/* .",
     "build:rename:esm": "ls -d esm/* | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.esm\\.compiled\\2/' | xargs -IX echo mv X | sh && mv esm/* .",
@@ -30,8 +30,8 @@
     "build:adjust:common": "sed -i -e 's/index\\.js\\.map/index\\.common\\.compiled\\.js\\.map/' index.common.compiled.js && sed -i -e 's/index\\.js/index\\.common\\.compiled\\.js/' index.common.compiled.js.map && sed -i -e 's/\\.\\.\\/index\\.ts/\\.\\/index\\.ts/' index.common.compiled.js.map && sed -i -e 's/\\.\\.\\/index\\.ts/\\.\\/index\\.ts/' index.d.ts.map",
     "build:adjust:esm": "sed -i -e 's/index\\.js\\.map/index\\.esm\\.\\compiled\\.js\\.map/' index.esm.compiled.js && sed -i -e 's/index\\.js/index\\.esm\\.compiled\\.js/' index.esm.compiled.js.map && sed -i -e 's/\\.\\.\\/index\\.ts/\\.\\/index\\.ts/' index.esm.compiled.js.map",
     "build:adjust": "npm run build:adjust:common && npm run build:adjust:esm",
-    "build:minify:common": "uglifyjs index.common.compiled.js -c --source-map \"content=index.common.compiled.js.map,url=index.js.map\" -o index.js",
-    "build:minify:esm": "uglifyjs index.esm.compiled.js -c --source-map \"content=index.esm.compiled.js.map,url=index.esm.js.map\" -o index.esm.js",
+    "build:minify:common": "uglifyjs index.common.compiled.js -c --source-map \"content=index.common.compiled.js.map,url=index.min.js.map\" -o index.min.js",
+    "build:minify:esm": "uglifyjs index.esm.compiled.js -c --source-map \"content=index.esm.compiled.js.map,url=index.esm.min.js.map\" -o index.esm.min.js",
     "build:minify": "npm run build:minify:common && npm run build:minify:esm",
     "build:cleanup": "rm -r common esm *.compiled.* index.d.ts.map-e",
     "build": "npm run build:compile && npm run build:rename && npm run build:adjust && npm run build:minify",
