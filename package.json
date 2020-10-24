@@ -22,9 +22,9 @@
   ],
   "scripts": {
     "test": "jest --coverage",
-    "clean:build": "ls | grep -E '^esm$|^common$|\\.compiled\\.|-e$|\\.tsbuildinfo$' | xargs rm -r",
-    "clean:test": "ls | grep -E '^coverage$' | xargs rm -r",
-    "clean:dist": "ls | grep -E '^index\\..*?(js|d\\.ts)' | xargs rm -r",
+    "clean:build": "ls | grep -E '^esm$|^common$|\\.compiled\\.|-e$|\\.tsbuildinfo$' | xargs rm --no-run-if-empty -r",
+    "clean:test": "ls | grep -E '^coverage$' | xargs rm --no-run-if-empty -r",
+    "clean:dist": "ls | grep -E '^index\\..*?(js|d\\.ts)' | xargs rm --no-run-if-empty -r",
     "clean": "run-p clean:*",
     "build:compile": "tsc -b tsconfig.json tsconfig.esm.json",
     "build:rename:common": "ls -d common/* | grep -v d.ts | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.common\\.compiled\\2/' | xargs -IX echo mv X | sh && mv common/* .",
