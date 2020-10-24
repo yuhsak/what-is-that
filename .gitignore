@@ -4,5 +4,6 @@
 .vscode
 
 /esm
+/common
 index.*
 !index.ts
