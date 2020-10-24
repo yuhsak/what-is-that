@@ -22,9 +22,9 @@
   ],
   "scripts": {
     "test": "jest --coverage",
-    "clean:build": "ls | grep -E '^esm$|^common$|\\.compiled\\.|-e$|\\.tsbuildinfo$' | xargs rm --no-run-if-empty -r",
-    "clean:test": "ls | grep -E '^coverage$' | xargs rm --no-run-if-empty -r",
-    "clean:dist": "ls | grep -E '^index\\..*?(js|d\\.ts)' | xargs rm --no-run-if-empty -r",
+    "clean:build": "ls | grep -E '^esm$|^common$|\\.compiled\\.|-e$|\\.tsbuildinfo$' | xargs rimraf",
+    "clean:test": "ls | grep -E '^coverage$' | xargs rimraf",
+    "clean:dist": "ls | grep -E '^index\\..*?(js|d\\.ts)' | xargs rimraf",
     "clean": "run-p clean:*",
     "build:compile": "tsc -b tsconfig.json tsconfig.esm.json",
     "build:rename:common": "ls -d common/* | grep -v d.ts | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.common\\.compiled\\2/' | xargs -IX echo mv X | sh && mv common/* .",
@@ -51,6 +51,7 @@
     "coveralls": "^3.1.0",
     "jest": "26.5.2",
     "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3",
     "uglify-es": "^3.3.9"
