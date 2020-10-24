@@ -13,4 +13,4 @@ deploy:
     tags: true
     repo: Yuhsak/what-is-that
     branch: main
-  cleanup: false
+  skip_cleanup: true
