@@ -1,13 +1,12 @@
 {
   "name": "what-is-that",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Identify type of Object (or Primitive) for both Node.js and browser written in TypeScript",
   "author": {
     "name": "Yuhsak Inoue",
     "email": "yuhsak.inoue@gmail.com",
     "url": "https://github.com/Yuhsak"
   },
-
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -23,20 +22,30 @@
   ],
   "scripts": {
     "test": "jest",
-    "clean": "ls | grep -E '^index\\..*?(js|d\\.ts)|^esm|^common|\\.tsbuildinfo$' | xargs rm -r",
+    "clean": "ls | grep -E '^index\\..*?(js|d\\.ts)|^esm|^common|\\.tsbuildinfo$|-e$' | xargs rm -r",
+    "build:rename:common": "ls -d common/* | grep -v d.ts | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.common\\.compiled\\2/' | xargs -IX echo mv X | sh && mv common/* .",
+    "build:rename:esm": "ls -d esm/* | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.esm\\.compiled\\2/' | xargs -IX echo mv X | sh && mv esm/* .",
+    "build:rename": "npm run build:rename:common && npm run build:rename:esm",
+    "build:adjust:common": "sed -i -e 's/index\\.js\\.map/index\\.common\\.compiled\\.js\\.map/' index.common.compiled.js && sed -i -e 's/index\\.js/index\\.common\\.compiled\\.js/' index.common.compiled.js.map && sed -i -e 's/\\.\\.\\/index\\.ts/\\.\\/index\\.ts/' index.common.compiled.js.map",
+    "build:adjust:esm": "sed -i -e 's/index\\.js\\.map/index\\.esm\\.\\compiled\\.js\\.map/' index.esm.compiled.js && sed -i -e 's/index\\.js/index\\.esm\\.compiled\\.js/' index.esm.compiled.js.map && sed -i -e 's/\\.\\.\\/index\\.ts/\\.\\/index\\.ts/' index.esm.compiled.js.map",
+    "build:adjust": "npm run build:adjust:common && npm run build:adjust:esm",
+    "build:minify:common": "uglifyjs index.common.compiled.js -c --source-map \"content=index.common.compiled.js.map\" -o index.js",
+    "build:minify:esm": "uglifyjs index.esm.compiled.js -c --source-map \"content=index.esm.compiled.js.map\" -o index.esm.js",
+    "build:minify": "npm run build:minify:common && npm run build:minify:esm",
     "build:compile": "tsc -b tsconfig.json tsconfig.esm.json",
-    "rename:esm": "ls -d esm/* | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.esm\\2/' | xargs -IX echo mv X | sh && mv esm/* . && sed -i -e 's/index\\.js\\.map/index\\.esm\\.js\\.map/' index.esm.js && sed -i -e 's/index\\.js/index\\.esm\\.js/' index.esm.js.map && sed -i -e 's/\\.\\.\\/index\\.ts/\\.\\/index\\.ts/' index.esm.js.map && rm -r esm *-e",
-    "rename:common": "ls -d common/* | grep -v d.ts | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.common\\2/' | xargs -IX echo mv X | sh && mv common/* . && sed -i -e 's/index\\.js\\.map/index\\.common\\.js\\.map/' index.common.js && sed -i -e 's/index\\.js/index\\.common\\.js/' index.common.js.map && sed -i -e 's/\\.\\.\\/index\\.ts/\\.\\/index\\.ts/' index.common.js.map && rm -r common *-e",
-    "build": "npm run build:compile && npm run rename:esm && npm run rename:common",
-    "watch": "npm run build:compile -- --watch",
+    "build:cleanup": "rm -r common esm *.compiled.*",
+    "build": "npm run build:compile && npm run build:rename && npm run build:adjust && npm run build:minify",
     "prebuild": "npm run clean",
+    "postbuild": "npm run build:cleanup",
+    "watch": "npm run build:compile -- --watch",
     "start": "npm run watch",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "typescript": "^4.0.3",
+    "@types/jest": "^26.0.14",
     "jest": "26.5.2",
     "ts-jest": "^26.4.1",
-    "@types/jest": "^26.0.14"
+    "typescript": "^4.0.3",
+    "uglify-es": "^3.3.9"
   }
 }
