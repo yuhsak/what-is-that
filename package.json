@@ -22,9 +22,9 @@
   ],
   "scripts": {
     "test": "jest --coverage",
-    "clean:build": "ls | grep -E '^esm$|^common$|\\.compiled\\.|-e$|\\.tsbuildinfo$' | xargs rimraf",
-    "clean:test": "ls | grep -E '^coverage$' | xargs rimraf",
-    "clean:dist": "ls | grep -E '^index\\..*?(js|d\\.ts)' | xargs rimraf",
+    "clean:build": "rimraf common esm *.compiled.* *-e *.tsbuildinfo",
+    "clean:test": "rimraf coverage",
+    "clean:dist": "rimraf index*.d.ts* index*.js*",
     "clean": "run-p clean:*",
     "build:compile": "tsc -b tsconfig.json tsconfig.esm.json",
     "build:rename:common": "ls -d common/* | grep -v d.ts | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.common\\.compiled\\2/' | xargs -IX echo mv X | sh && mv common/* .",
