@@ -1,7 +1,7 @@
 {
   "name": "what-is-that",
-  "version": "1.2.0",
-  "description": "Identify type of Object (or Primitive) for both Node.js and browser written in TypeScript",
+  "version": "1.2.1",
+  "description": "Minimal, tiny (1.1 kb) object type identifier for both Node.js and browser written in TypeScript.",
   "author": {
     "name": "Yuhsak Inoue",
     "email": "yuhsak.inoue@gmail.com",
@@ -23,6 +23,7 @@
   "scripts": {
     "test": "jest",
     "clean": "ls | grep -E '^index\\..*?(js|d\\.ts)|^esm|^common|\\.tsbuildinfo$|-e$' | xargs rm -r",
+    "build:compile": "tsc -b tsconfig.json tsconfig.esm.json",
     "build:rename:common": "ls -d common/* | grep -v d.ts | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.common\\.compiled\\2/' | xargs -IX echo mv X | sh && mv common/* .",
     "build:rename:esm": "ls -d esm/* | sed -E 's/^([^\\.]*)(.*$)/\\1\\2 \\1.esm\\.compiled\\2/' | xargs -IX echo mv X | sh && mv esm/* .",
     "build:rename": "npm run build:rename:common && npm run build:rename:esm",
@@ -32,7 +33,6 @@
     "build:minify:common": "uglifyjs index.common.compiled.js -c --source-map \"content=index.common.compiled.js.map\" -o index.js",
     "build:minify:esm": "uglifyjs index.esm.compiled.js -c --source-map \"content=index.esm.compiled.js.map\" -o index.esm.js",
     "build:minify": "npm run build:minify:common && npm run build:minify:esm",
-    "build:compile": "tsc -b tsconfig.json tsconfig.esm.json",
     "build:cleanup": "rm -r common esm *.compiled.*",
     "build": "npm run build:compile && npm run build:rename && npm run build:adjust && npm run build:minify",
     "prebuild": "npm run clean",

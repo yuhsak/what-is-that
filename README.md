@@ -1,6 +1,6 @@
 # what-is-that
 
-Identify type of Object (or Primitive) for both Node.js and browser written in TypeScript
+Minimal, tiny (1.1 kb) object type identifier for both Node.js and browser written in TypeScript.
 
 ## Install
 
