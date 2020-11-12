@@ -11,6 +11,8 @@ export type Type =
   'Function' |
   'GeneratorFunction' |
   'Generator' |
+  'AsyncGeneratorFunction' |
+  'AsyncGenerator' |
   'RegExp' |
   'Date' |
   'Promise' |
@@ -63,6 +65,8 @@ export function what(o: any): Type {
     t === 'Function' ? t :
     t === 'GeneratorFunction' ? t :
     t === 'Generator' ? t :
+    t === 'AsyncGeneratorFunction' ? t :
+    t === 'AsyncGenerator' ? t :
     t === 'RegExp' ? t :
     t === 'Date' ? t :
     t === 'Promise' ? t :
@@ -158,6 +162,18 @@ export function isGenerator(o: any): o is Generator {
 
 export function isGeneratorAs<T extends Generator>(o: any): o is T {
   return what(o) === 'Generator'
+}
+
+export function isAsyncGeneratorFunction(o: any): o is AsyncGeneratorFunction {
+  return what(o) === 'AsyncGeneratorFunction'
+}
+
+export function isAsyncGenerator(o: any): o is AsyncGenerator {
+  return what(o) === 'AsyncGenerator'
+}
+
+export function isAsyncGeneratorAs<T extends AsyncGenerator>(o: any): o is T {
+  return what(o) === 'AsyncGenerator'
 }
 
 export function isRegExp(o: any): o is RegExp {

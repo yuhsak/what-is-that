@@ -1,9 +1,10 @@
-import {isObjectAs, isObjectLikeAs, isFunctionAs, isGeneratorAs, isPromiseAs, isArrayAs, isSetAs, isMapAs, isWeakSetAs, isWeakMapAs, isUnknownAs} from '../index'
+import {isObjectAs, isObjectLikeAs, isFunctionAs, isGeneratorAs, isAsyncGeneratorAs, isPromiseAs, isArrayAs, isSetAs, isMapAs, isWeakSetAs, isWeakMapAs, isUnknownAs} from '../index'
 import * as o from './__object'
 
 type O = {a: string}
 type F = (arg: string) => string
 type G = Generator<string, boolean, number>
+type AG = AsyncGenerator<string, boolean, number>
 
 describe('is:generics', () => {
 
@@ -23,6 +24,10 @@ describe('is:generics', () => {
 
   test('isGeneratorAs', () => {
     expect(isGeneratorAs<G>(o.generator)).toBe(true)
+  })
+
+  test('isAsyncGeneratorAs', () => {
+    expect(isAsyncGeneratorAs<AG>(o.asyncGenerator)).toBe(true)
   })
 
   test('isPromiseAs', () => {

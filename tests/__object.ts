@@ -5,6 +5,9 @@ export const objectLike = new ObjectLike()
 export function* generatorFunction() {}
 export const generator = generatorFunction()
 
+export async function* asyncGeneratorFunction() {}
+export const asyncGenerator = asyncGeneratorFunction()
+
 export const url = new URL('http://a')
 export const urlSearchParams = url.searchParams
 

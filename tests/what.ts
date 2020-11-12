@@ -62,6 +62,14 @@ describe('what', () => {
       expect(what(o.generator)).toBe('Generator')
     })
 
+    test('AsyncGeneratorFunction', () => {
+      expect(what(o.asyncGeneratorFunction)).toBe('AsyncGeneratorFunction')
+    })
+
+    test('AsyncGenerator', () => {
+      expect(what(o.asyncGenerator)).toBe('AsyncGenerator')
+    })
+
     test('RegExp', () => {
       expect(what(new RegExp(''))).toBe('RegExp')
     })

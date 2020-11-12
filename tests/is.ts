@@ -53,6 +53,14 @@ describe('is', () => {
     expect(that.isGenerator(o.generator)).toBe(true)
   })
 
+  test('isAsyncGeneratorFunction', () => {
+    expect(that.isAsyncGeneratorFunction(o.asyncGeneratorFunction)).toBe(true)
+  })
+
+  test('isAsyncGenerator', () => {
+    expect(that.isAsyncGenerator(o.asyncGenerator)).toBe(true)
+  })
+
   test('isRegExp', () => {
     expect(that.isRegExp(new RegExp(''))).toBe(true)
   })
