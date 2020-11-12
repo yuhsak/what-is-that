@@ -156,6 +156,10 @@ export function isGeneratorFunction(o: any): o is GeneratorFunction {
   return what(o) === 'GeneratorFunction'
 }
 
+export function isGeneratorFunctionAs<T extends (...args: any[]) => Generator<any, any, any>>(o: any): o is T {
+  return what(o) === 'GeneratorFunction'
+}
+
 export function isGenerator(o: any): o is Generator {
   return what(o) === 'Generator'
 }
@@ -165,6 +169,10 @@ export function isGeneratorAs<T extends Generator>(o: any): o is T {
 }
 
 export function isAsyncGeneratorFunction(o: any): o is AsyncGeneratorFunction {
+  return what(o) === 'AsyncGeneratorFunction'
+}
+
+export function isAsyncGeneratorFunctionAs<T extends (...args: any[]) => AsyncGenerator<any, any, any>>(o: any): o is T {
   return what(o) === 'AsyncGeneratorFunction'
 }
 
