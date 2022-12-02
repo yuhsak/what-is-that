@@ -1,103 +1,147 @@
 export type Type =
-  'Undefined' |
-  'Null' |
-  'Number' |
-  'Boolean' |
-  'String' |
-  'Symbol' |
-  'BigInt' |
-  'Object' |
-  'ObjectLike' |
-  'Function' |
-  'GeneratorFunction' |
-  'Generator' |
-  'AsyncGeneratorFunction' |
-  'AsyncGenerator' |
-  'RegExp' |
-  'Date' |
-  'Promise' |
-  'Error' |
-  'TextEncoder' |
-  'TextDecoder' |
-  'URL' |
-  'URLSearchParams' |
-  'Array' |
-  'Set' |
-  'Map' |
-  'WeakSet' |
-  'WeakMap' |
-  'DataView' |
-  'Buffer' |
-  'ArrayBuffer' |
-  'SharedArrayBuffer' |
-  'Int8Array' |
-  'Uint8Array' |
-  'Uint8ClampedArray' |
-  'Int16Array' |
-  'Uint16Array' |
-  'Int32Array' |
-  'Uint32Array' |
-  'Float32Array' |
-  'Float64Array' |
-  'BigInt64Array' |
-  'BigUint64Array' |
-  'Blob' |
-  'File' |
-  'Unknown'
+  | 'Undefined'
+  | 'Null'
+  | 'Number'
+  | 'Boolean'
+  | 'String'
+  | 'Symbol'
+  | 'BigInt'
+  | 'Object'
+  | 'ObjectLike'
+  | 'Function'
+  | 'GeneratorFunction'
+  | 'Generator'
+  | 'AsyncGeneratorFunction'
+  | 'AsyncGenerator'
+  | 'RegExp'
+  | 'Date'
+  | 'Promise'
+  | 'Error'
+  | 'TextEncoder'
+  | 'TextDecoder'
+  | 'URL'
+  | 'URLSearchParams'
+  | 'Array'
+  | 'Set'
+  | 'Map'
+  | 'WeakSet'
+  | 'WeakMap'
+  | 'DataView'
+  | 'Buffer'
+  | 'ArrayBuffer'
+  | 'SharedArrayBuffer'
+  | 'Int8Array'
+  | 'Uint8Array'
+  | 'Uint8ClampedArray'
+  | 'Int16Array'
+  | 'Uint16Array'
+  | 'Int32Array'
+  | 'Uint32Array'
+  | 'Float32Array'
+  | 'Float64Array'
+  | 'BigInt64Array'
+  | 'BigUint64Array'
+  | 'Blob'
+  | 'File'
+  | 'Unknown'
 
 export function getReprStr(o: any) {
   return Object.prototype.toString.call(o).slice(8, -1)
 }
 
 export function what(o: any): Type {
-
   var t = getReprStr(o)
 
   // @ts-ignore
-  return t === 'Undefined' ? t :
-    t === 'Null' ? t :
-    t === 'Number' ? t :
-    t === 'Boolean' ? t :
-    t === 'String' ? t :
-    t === 'Symbol' ? t :
-    t === 'BigInt' ? t :
-    t === 'Object' ? o.constructor === Object && Object.getPrototypeOf(o) === Object.prototype ? t : 'ObjectLike' :
-    t === 'Function' ? t :
-    t === 'GeneratorFunction' ? t :
-    t === 'Generator' ? t :
-    t === 'AsyncGeneratorFunction' ? t :
-    t === 'AsyncGenerator' ? t :
-    t === 'RegExp' ? t :
-    t === 'Date' ? t :
-    t === 'Promise' ? t :
-    t === 'Error' ? t :
-    t === 'TextEncoder' ? t :
-    t === 'TextDecoder' ? t :
-    t === 'URL' ? t :
-    t === 'URLSearchParams' ? t :
-    t === 'Array' ? t :
-    t === 'Set' ? t :
-    t === 'Map' ? t :
-    t === 'WeakSet' ? t :
-    t === 'WeakMap' ? t :
-    t === 'DataView' ? t :
-    t === 'ArrayBuffer' ? t :
-    t === 'SharedArrayBuffer' ? t :
-    t === 'Int8Array' ? t :
-    t === 'Uint8Array' ? o.constructor && typeof o.constructor.isBuffer === 'function' && o.constructor.isBuffer(o) ? 'Buffer' : t :
-    t === 'Uint8ClampedArray' ? t :
-    t === 'Int16Array' ? t :
-    t === 'Uint16Array' ? t :
-    t === 'Int32Array' ? t :
-    t === 'Uint32Array' ? t :
-    t === 'Float32Array' ? t :
-    t === 'Float64Array' ? t :
-    t === 'BigInt64Array' ? t :
-    t === 'BigUint64Array' ? t :
-    t === 'Blob' ? t :
-    t === 'File' ? t :
-    'Unknown'
-
+  return t === 'Undefined'
+    ? t
+    : t === 'Null'
+    ? t
+    : t === 'Number'
+    ? t
+    : t === 'Boolean'
+    ? t
+    : t === 'String'
+    ? t
+    : t === 'Symbol'
+    ? t
+    : t === 'BigInt'
+    ? t
+    : t === 'Object'
+    ? o.constructor === Object && Object.getPrototypeOf(o) === Object.prototype
+      ? t
+      : 'ObjectLike'
+    : t === 'Function'
+    ? t
+    : t === 'GeneratorFunction'
+    ? t
+    : t === 'Generator'
+    ? t
+    : t === 'AsyncGeneratorFunction'
+    ? t
+    : t === 'AsyncGenerator'
+    ? t
+    : t === 'RegExp'
+    ? t
+    : t === 'Date'
+    ? t
+    : t === 'Promise'
+    ? t
+    : t === 'Error'
+    ? t
+    : t === 'TextEncoder'
+    ? t
+    : t === 'TextDecoder'
+    ? t
+    : t === 'URL'
+    ? t
+    : t === 'URLSearchParams'
+    ? t
+    : t === 'Array'
+    ? t
+    : t === 'Set'
+    ? t
+    : t === 'Map'
+    ? t
+    : t === 'WeakSet'
+    ? t
+    : t === 'WeakMap'
+    ? t
+    : t === 'DataView'
+    ? t
+    : t === 'ArrayBuffer'
+    ? t
+    : t === 'SharedArrayBuffer'
+    ? t
+    : t === 'Int8Array'
+    ? t
+    : t === 'Uint8Array'
+    ? o.constructor && typeof o.constructor.isBuffer === 'function' && o.constructor.isBuffer(o)
+      ? 'Buffer'
+      : t
+    : t === 'Uint8ClampedArray'
+    ? t
+    : t === 'Int16Array'
+    ? t
+    : t === 'Uint16Array'
+    ? t
+    : t === 'Int32Array'
+    ? t
+    : t === 'Uint32Array'
+    ? t
+    : t === 'Float32Array'
+    ? t
+    : t === 'Float64Array'
+    ? t
+    : t === 'BigInt64Array'
+    ? t
+    : t === 'BigUint64Array'
+    ? t
+    : t === 'Blob'
+    ? t
+    : t === 'File'
+    ? t
+    : 'Unknown'
 }
 
 export function isUndefined(o: any): o is undefined {
@@ -156,7 +200,9 @@ export function isGeneratorFunction(o: any): o is GeneratorFunction {
   return what(o) === 'GeneratorFunction'
 }
 
-export function isGeneratorFunctionAs<T extends (...args: any[]) => Generator<any, any, any>>(o: any): o is T {
+export function isGeneratorFunctionAs<T extends (...args: any[]) => Generator<any, any, any>>(
+  o: any,
+): o is T {
   return what(o) === 'GeneratorFunction'
 }
 
@@ -172,7 +218,9 @@ export function isAsyncGeneratorFunction(o: any): o is AsyncGeneratorFunction {
   return what(o) === 'AsyncGeneratorFunction'
 }
 
-export function isAsyncGeneratorFunctionAs<T extends (...args: any[]) => AsyncGenerator<any, any, any>>(o: any): o is T {
+export function isAsyncGeneratorFunctionAs<
+  T extends (...args: any[]) => AsyncGenerator<any, any, any>,
+>(o: any): o is T {
   return what(o) === 'AsyncGeneratorFunction'
 }
 

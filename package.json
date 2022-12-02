@@ -23,6 +23,7 @@
   "scripts": {
     "test": "jest --coverage",
     "check:tsc": "tsc --noEmit",
+    "check:prettier": "prettier --check .",
     "clean:build": "rimraf common esm *.compiled.* *-e *.tsbuildinfo",
     "clean:test": "rimraf coverage",
     "clean:dist": "rimraf index*.d.ts* index*.js*",

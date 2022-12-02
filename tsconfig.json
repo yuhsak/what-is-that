@@ -1,7 +1,5 @@
 {
-  "include": [
-    "index.ts"
-  ],
+  "include": ["index.ts"],
   "compilerOptions": {
     "incremental": true,
     "target": "es5",

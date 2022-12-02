@@ -1,14 +1,12 @@
-import {what, getReprStr} from '../index'
+import { what, getReprStr } from '../index'
 import * as o from './__object'
 
 describe('what', () => {
-
   describe('getReprStr', () => {
     expect(getReprStr(true)).toBe('Boolean')
   })
 
   describe('Primitive', () => {
-
     test('Undefined', () => {
       expect(what(undefined)).toBe('Undefined')
     })
@@ -36,11 +34,9 @@ describe('what', () => {
     test('BigInt', () => {
       expect(what(BigInt('1'))).toBe('BigInt')
     })
-
   })
 
   describe('Object', () => {
-
     test('Object', () => {
       expect(what(o.object)).toBe('Object')
     })
@@ -185,7 +181,5 @@ describe('what', () => {
     test('Unknown', () => {
       expect(what(o.unknown)).toBe('Unknown')
     })
-
   })
-
 })

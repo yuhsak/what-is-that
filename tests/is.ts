@@ -2,9 +2,8 @@ import * as that from '../index'
 import * as o from './__object'
 
 describe('is', () => {
-
   test('isUndefined', () => {
-    expect(that.isUndefined(void (0))).toBe(true)
+    expect(that.isUndefined(void 0)).toBe(true)
   })
 
   test('isNull', () => {
@@ -176,5 +175,4 @@ describe('is', () => {
   test('isUnknown', () => {
     expect(that.isUnknown(o.unknown)).toBe(true)
   })
-
 })

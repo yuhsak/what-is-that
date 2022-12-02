@@ -13,5 +13,9 @@ export const urlSearchParams = url.searchParams
 
 export const file = new File([], 'a')
 
-export class UnknownObject {get [Symbol.toStringTag]() {return 'UnknownObject'} }
+export class UnknownObject {
+  get [Symbol.toStringTag]() {
+    return 'UnknownObject'
+  }
+}
 export const unknown = new UnknownObject()
